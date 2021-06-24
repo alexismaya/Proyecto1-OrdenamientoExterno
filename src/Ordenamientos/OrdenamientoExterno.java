@@ -2,6 +2,7 @@ package Ordenamientos;
 
 import java.util.Scanner;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.ArrayList;
 
 import java.io.File;
@@ -10,10 +11,12 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import Archivos.ArchivoOrdenamiento;
+import util.AscendingOrder;
 
 public abstract class OrdenamientoExterno {
     protected int numeroArchivos;
     protected ArchivoOrdenamiento[] archivoOrdenamiento;
+    private Comparator<Integer> comparator = new AscendingOrder();
 
     public ArrayList<Integer> ordenamientoInterno(ArrayList<Integer> bloque) {
         Collections.sort(bloque);
@@ -59,6 +62,8 @@ public abstract class OrdenamientoExterno {
                 // Comparar elemento por elemento
                 integer1 = Integer.parseInt(valor1);
                 integer2 = Integer.parseInt(valor2);
+
+                // COMPARAR LOS ELEMENTOS >
 
             }
         } catch (FileNotFoundException e) {
