@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PrincipalController">
    <center>
       <GridPane prefHeight="253.0" prefWidth="439.0" BorderPane.alignment="CENTER">
@@ -45,7 +44,7 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="AlgoritmoPicker" prefWidth="150.0" />
+                  <ChoiceBox fx:id="algoritmoCB" prefWidth="150.0" />
                </children>
             </VBox>
          </children>
