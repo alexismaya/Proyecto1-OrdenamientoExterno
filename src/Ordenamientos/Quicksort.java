@@ -11,7 +11,11 @@ public class Quicksort {
 
     public static Comparator<Integer> comp = new AscendingOrder();
 
-    static int partition(ArrayList<Integer> arr, int low, int high) {
+    public static void setComp(Comparator<Integer> com) {
+        comp = com;
+    }
+
+    private static int partition(ArrayList<Integer> arr, int low, int high) {
         int pivot = arr.get(high);
         int i = (low - 1);
         for (int j = low; j < high; j++) {
@@ -29,7 +33,7 @@ public class Quicksort {
         return i + 1;
     }
 
-    static void sort(ArrayList<Integer> arr, int low, int high) {
+    public static void sort(ArrayList<Integer> arr, int low, int high) {
         if (low < high) {
             int pi = partition(arr, low, high);
             sort(arr, low, pi - 1);

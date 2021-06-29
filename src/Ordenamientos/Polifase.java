@@ -1,28 +1,44 @@
 package Ordenamientos;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import Archivos.ArchivoOrdenamiento;
+import util.DescendingOrder;
 
 public class Polifase extends OrdenamientoExterno {
 
-    @Override
-    public void ordenar() {
+    private static File archivo1, archivo2;
 
-        ArrayList<Integer> bloque = archivoOrdenamiento[0].generarBloque();
-        bloque = ordenamientoInterno(bloque);
+    public static void ordenar(File origen, int size) {
 
-    }
+        // archivoOrdenamiento[0]->F0
+        // archivoOrdenamiento[1]->F1
+        // archivoOrdenamiento[2]->F2
 
-    private void init(int blockSize) {
-        numeroArchivos = 4;
-        archivoOrdenamiento = new ArchivoOrdenamiento[numeroArchivos];
-        int i = 0;
+        OrdenamientoExterno.setSizeBlock(size);
+        OrdenamientoExterno.setComparator(new DescendingOrder());
 
-        for (ArchivoOrdenamiento archivo : archivoOrdenamiento) {
-            archivo = new ArchivoOrdenamiento("F" + i);
-            archivo.setBlockSize(blockSize);
-            i++;
+        try {
+            File currentDir = new File(".");
+            String direccion = currentDir.getCanonicalPath() + File.separator + "src/files/";
+            System.out.println(direccion);
+
+            archivo1 = new File(direccion + "Archivo1.txt");
+            archivo2 = new File(direccion + "Archivo2.txt");
+
+            lecturaInicial(origen, archivo1, archivo2);
+
+            do {
+                intercalar(archivo1, archivo2, origen);
+                if (finalizo(origen))
+                    break;
+                distribuir(origen, archivo1, archivo2);
+            } while (true);
+        } catch (IOException e) {
+            System.out.println("Ha ocurrido un error " + e.getMessage());
         }
+
     }
 
 }
