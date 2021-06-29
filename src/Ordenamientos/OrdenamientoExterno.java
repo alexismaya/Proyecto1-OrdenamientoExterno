@@ -1,7 +1,7 @@
 package Ordenamientos;
 
 import java.util.Scanner;
-import java.util.Collections;
+
 import java.util.Comparator;
 import java.util.ArrayList;
 
@@ -9,10 +9,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
-
-import Archivos.ArchivoOrdenamiento;
-import util.AscendingOrder;
-import util.DescendingOrder;
 
 public abstract class OrdenamientoExterno {
 
@@ -23,6 +19,10 @@ public abstract class OrdenamientoExterno {
 
     protected static void setComparator(Comparator<Integer> order) {
         comparator = order;
+    }
+
+    protected static Comparator<Integer> GetComparator() {
+        return comparator;
     }
 
     protected static void setSizeBlock(int size) {
@@ -61,7 +61,8 @@ public abstract class OrdenamientoExterno {
                     bloque.add(scFile.nextInt());
                 }
 
-                bloque = ordenamientoInterno(bloque);
+                if (bloque.size() > 1)
+                    bloque = ordenamientoInterno(bloque);
 
                 for (Integer integer : bloque) {
                     fWriter.write(integer + ",");

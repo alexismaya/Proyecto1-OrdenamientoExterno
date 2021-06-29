@@ -2,8 +2,6 @@ package Ordenamientos;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import Archivos.ArchivoOrdenamiento;
 import util.DescendingOrder;
 
 public class Polifase extends OrdenamientoExterno {
@@ -22,7 +20,7 @@ public class Polifase extends OrdenamientoExterno {
         try {
             File currentDir = new File(".");
             String direccion = currentDir.getCanonicalPath() + File.separator + "src/files/";
-            System.out.println(direccion);
+            // System.out.println(direccion);
 
             archivo1 = new File(direccion + "Archivo1.txt");
             archivo2 = new File(direccion + "Archivo2.txt");
