@@ -61,6 +61,7 @@ public class Radix {
           for(i=j;i<a.length;i++){
               a[i]=ai[i-j];
           }
+          FA1(a);
           ai=a;
         }
         return ai;
@@ -85,6 +86,20 @@ public class Radix {
             }
             BCAO.append("]");
             BCAO.close();
+        } catch (Exception e) {
+        }
+    }
+    public static void FA1(int[] asf1){
+        try {
+            int i=0;
+            FileWriter FW1=new FileWriter("ruta de archivos");
+            BufferedWriter BFW1=new BufferedWriter(FW1);
+            BFW1.append("[");
+            for(i=0;i<asf1.length;i++){
+                BFW1.write(asf1[i]);
+            }
+            BFW1.append("]");
+            BFW1.close();
         } catch (Exception e) {
         }
     }
