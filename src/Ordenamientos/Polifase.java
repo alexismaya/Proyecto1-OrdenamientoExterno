@@ -2,20 +2,20 @@ package Ordenamientos;
 
 import java.io.File;
 import java.io.IOException;
-import util.DescendingOrder;
+import java.util.Comparator;
 
 public class Polifase extends OrdenamientoExterno {
 
     private static File archivo1, archivo2;
 
-    public static void ordenar(File origen, int size) {
+    public static void ordenar(File origen, int size, Comparator<Integer> comparator) {
 
         // archivoOrdenamiento[0]->F0
         // archivoOrdenamiento[1]->F1
         // archivoOrdenamiento[2]->F2
 
         OrdenamientoExterno.setSizeBlock(size);
-        OrdenamientoExterno.setComparator(new DescendingOrder());
+        OrdenamientoExterno.setComparator(comparator);
 
         try {
             File currentDir = new File(".");

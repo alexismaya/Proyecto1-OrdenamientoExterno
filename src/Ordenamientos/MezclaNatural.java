@@ -8,17 +8,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
-import util.DescendingOrder;
-
 public class MezclaNatural extends OrdenamientoExterno {
     private static File archivo1, archivo2, archivo0;
 
-    private static Comparator<Integer> mComparator;
-
-    public static void ordenar(File origen) {
-        OrdenamientoExterno.setComparator(new DescendingOrder());
+    public static void ordenar(File origen, Comparator<Integer> comparator) {
+        OrdenamientoExterno.setComparator(comparator);
         int iteracion = 1;
-        mComparator = OrdenamientoExterno.GetComparator();
 
         try {
             File currentDir = new File(".");
@@ -75,7 +70,7 @@ public class MezclaNatural extends OrdenamientoExterno {
 
                     if (valorAnterior == null) {
                         bloque.add(valorActual);
-                    } else if (mComparator.compare(valorActual, valorAnterior) > 0)
+                    } else if (comparator.compare(valorActual, valorAnterior) > 0)
                         bloque.add(valorActual);
                     else {
                         valorAnterior = null;

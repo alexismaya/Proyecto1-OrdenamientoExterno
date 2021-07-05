@@ -12,17 +12,13 @@ import java.io.FileNotFoundException;
 
 public abstract class OrdenamientoExterno {
 
-    private static Comparator<Integer> comparator;
+    protected static Comparator<Integer> comparator;
     private static int sizeBlock;
 
     // Metodos de acceso
 
     protected static void setComparator(Comparator<Integer> order) {
         comparator = order;
-    }
-
-    protected static Comparator<Integer> GetComparator() {
-        return comparator;
     }
 
     protected static void setSizeBlock(int size) {
@@ -210,6 +206,7 @@ public abstract class OrdenamientoExterno {
         Scanner scFile;
         String valor;
         int contador = 0;
+
         try {
             scFile = new Scanner(origen).useDelimiter(",");
             do {
