@@ -11,29 +11,36 @@ import java.util.Scanner;
 import util.DescendingOrder;
 
 public class MezclaNatural extends OrdenamientoExterno {
-    private static File archivo1, archivo2;
+    private static File archivo1, archivo2, archivo0;
 
     private static Comparator<Integer> mComparator;
 
     public static void ordenar(File origen) {
         OrdenamientoExterno.setComparator(new DescendingOrder());
+        int iteracion = 1;
         mComparator = OrdenamientoExterno.GetComparator();
 
         try {
             File currentDir = new File(".");
             String direccion = currentDir.getCanonicalPath() + File.separator + "src/files/";
-            System.out.println(direccion);
 
-            archivo1 = new File(direccion + "Archivo1.txt");
-            archivo2 = new File(direccion + "Archivo2.txt");
+            archivo1 = new File(direccion + "Archivo1-Iteracion" + iteracion + ".txt");
+            archivo2 = new File(direccion + "Archivo2-Iteracion" + iteracion + ".txt");
+            iteracion++;
 
             lecturaInicial(origen, archivo1, archivo2);
 
             do {
-                intercalar(archivo1, archivo2, origen);
-                if (finalizo(origen))
+                archivo0 = new File(direccion + "Archivo0-Iteracion" + iteracion + ".txt");
+
+                intercalar(archivo1, archivo2, archivo0);
+                if (finalizo(archivo0))
                     break;
-                distribuir(origen, archivo1, archivo2);
+                archivo1 = new File(direccion + "Archivo1-Iteracion" + iteracion + ".txt");
+                archivo2 = new File(direccion + "Archivo2-Iteracion" + iteracion + ".txt");
+
+                iteracion++;
+                distribuir(archivo0, archivo1, archivo2);
             } while (true);
 
         } catch (IOException e) {
