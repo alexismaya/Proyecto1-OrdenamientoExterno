@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="back" stylesheets="@principal.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PrincipalController">
    <center>
       <GridPane prefHeight="253.0" prefWidth="439.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -27,12 +27,12 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Label text="Elige el archivo a ordenar">
+                  <Label text="Elige el archivo a ordenar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnArchivo" mnemonicParsing="false" onAction="#handleArchivoAction" text="Buscar">
+                  <Button fx:id="btnArchivo" mnemonicParsing="false" onAction="#handleArchivoAction" styleClass="btn" text="Buscar" textFill="WHITE">
                      <graphic>
                         <TextField fx:id="pathField" />
                      </graphic>
@@ -41,22 +41,22 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
                <children>
-                  <Label text="Elige el Algoritmo">
+                  <Label text="Elige el Algoritmo" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="algoritmoCB" prefWidth="150.0" />
+                  <ChoiceBox fx:id="algoritmoCB" prefWidth="150.0" styleClass="btn" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
                <children>
-                  <Label text="Elige el destino">
+                  <Label text="Elige el destino" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnDestino" mnemonicParsing="false" onAction="#handleDestinoAction" text="Buscar">
+                  <Button fx:id="btnDestino" mnemonicParsing="false" onAction="#handleDestinoAction" styleClass="btn" stylesheets="@principal.css" text="Buscar" textFill="WHITE">
                      <graphic>
                         <TextField fx:id="pathDestinoField" />
                      </graphic>
@@ -65,12 +65,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label text="Elige el Criterio">
+                  <Label text="Elige el Criterio" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="criterioCB" prefWidth="150.0" />
+                  <ChoiceBox fx:id="criterioCB" prefWidth="150.0" styleClass="btn" />
                </children>
             </VBox>
          </children>
@@ -80,7 +80,7 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <top>
-      <Label text="Ordenamientos Externos" BorderPane.alignment="CENTER">
+      <Label text="Ordenamientos Externos" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -89,8 +89,12 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="73.0" prefWidth="503.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
-            <Button fx:id="btnOrdena" disable="true" mnemonicParsing="false" onAction="#handleOrdenaAction" prefHeight="51.0" prefWidth="84.0" text="Ordena" />
+            <Button fx:id="btnOrdena" disable="true" mnemonicParsing="false" onAction="#handleOrdenaAction" prefHeight="51.0" prefWidth="84.0" text="Ordena" textFill="WHITE">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-principal" />
+               </styleClass>
+            </Button>
          </children>
       </VBox>
    </bottom>

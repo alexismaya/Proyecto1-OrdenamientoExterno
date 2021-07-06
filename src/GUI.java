@@ -15,7 +15,9 @@ public class GUI extends Application {
         controlador.setStage(primaryStage);
 
         primaryStage.setTitle("Ordenamiento Externo");
+
         // primaryStage.getIcons().add(new Image("images/pig.png"));
-        ControladorEscenas.nuevaEscena(getClass().getResource("/views/principalView.fxml"));
+        ControladorEscenas.nuevaEscena(getClass().getResource("/views/principalView.fxml"),
+                getClass().getResource("/views/principal.css").toExternalForm());
     }
 }

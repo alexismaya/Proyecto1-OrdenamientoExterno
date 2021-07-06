@@ -1,0 +1,63 @@
+.back{
+    -fx-background-color: #393E46;
+}
+
+.txt{
+    -fx-text-fill:#EEEEEE;
+}
+
+/*Botones*/
+
+.btn{
+    -fx-background-color:#00ADB5;
+    -fx-text-fill:#393E46;
+    -fx-border-style: none;
+
+    -fx-font-size:15px;
+    -fx-background-radius:5px;
+    -fx-cursor: hand;
+}
+
+
+/*Boton principal*/
+
+.btn-principal{
+    -fx-min-width: 84px;
+    -fx-min-height:51px;
+    -fx-transition: width position ease-in;
+}
+
+.btn-principal:hover{
+    -fx-min-width: 120px;
+    -fx-min-height:60px;
+    
+}
+
+/*ChoiceBox*/
+
+.choice-box .context-menu{
+    -fx-background-color:#00ADB5;
+    -fx-mark-color: #393E46;
+}
+
+.choice-box .menu-item:focused{
+    -fx-background-color:#AAD8D3;
+    -fx-text-fill:#393E46;
+}
+
+.choice-box .label{
+    -fx-text-fill:#393E46;
+}
+
+.btn:hover{
+    -fx-background-color:#AAD8D3;
+    
+}
+
+.text-field{
+    -fx-border-color: #393E46;
+    -fx-border-radius:5px;
+}
+
+
+

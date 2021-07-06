@@ -11,10 +11,11 @@ public class ControladorEscenas {
     private static Stage stage;
     private static Object object;
 
-    public static void nuevaEscena(URL url) {
+    public static void nuevaEscena(URL url, String style) {
         try {
             Scene newScene; // then we create a new scene with our new layout
             newScene = new Scene(FXMLLoader.load(url));
+            newScene.getStylesheets().add(style);
             stage.setScene(newScene);
 
             stage.show();

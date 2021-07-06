@@ -49,9 +49,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private TextField pathDestinoField;
 
-    @FXML
-    private ProgressBar progressBar;
-
     private FileChooser fileChooser;
 
     DirectoryChooser directoryChooser;
@@ -61,6 +58,8 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        criterioCB.getStyleClass().add("btn");
+
         // Se inicializan los seleccionadores
         fileChooser = new FileChooser();
         directoryChooser = new DirectoryChooser();
