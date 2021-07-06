@@ -1,13 +1,23 @@
 package Ordenamientos;
 
-
+import java.io.File;
+import java.util.Comparator;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Radix {
-    public static String[] leerA(String NA){ // Este metodo recoge la información del archivo
+    public static void ordenar(File origen, Comparator<Integer> comparator,File Destino){
+        String[] lectI=leerA(origen);
+        int[] CI=ConvertirAI(lectI);
+        int[] ArrO=RadixSort(CI,Destino);
+        lectI=ConvertirAS(ArrO);
+        GAO(lectI, "Arreglo Ordenado con Radix",Destino);
+        System.out.println("\nEL archivo ha sido ordenado con exito");
+
+    }
+    public static String[] leerA(File NA){ // Este metodo recoge la información del archivo
         String[] arrS=new String[10000];
         try{
             int i=0,c;
@@ -44,7 +54,7 @@ public class Radix {
         }
         return arrI;
     }
-    public static int[] RadixSort(int[] ai){ //En este metodo se ordenea el arreglo convertido
+    public static int[] RadixSort(int[] ai,File Destino){ //En este metodo se ordenea el arreglo convertido
         int i,j,k,tm=ai.length;
       for(k=Integer.SIZE-1;k>=0;k--){
           int a[]=new int[tm];
@@ -57,11 +67,11 @@ public class Radix {
               }else{
                   ai[i-j]=ai[i];
               }
+              FA1(a, Destino,k);
           }
           for(i=j;i<a.length;i++){
               a[i]=ai[i-j];
           }
-          FA1(a);
           ai=a;
         }
         return ai;
@@ -75,10 +85,10 @@ public class Radix {
         }
         return ASF;
     }
-    public static void GAO(String[] asf, String nuevoNom){ //De este metodo se genera el nuevo archivo con los datos ya ordenados en una ruta de momento preasignada
+    public static void GAO(String[] asf, String nuevoNom,File directorioDestino){ //De este metodo se genera el nuevo archivo con los datos ya ordenados en una ruta de momento preasignada
         try {
             int i=0;
-            FileWriter CAO=new FileWriter("C:\\Users\\danie\\Documents\\B\\"+nuevoNom+".txt");
+            FileWriter CAO=new FileWriter(directorioDestino+"//"+nuevoNom+"//"+".txt");
             BufferedWriter BCAO=new BufferedWriter(CAO);
             BCAO.append("[");
             for(i=0;i<asf.length;i++){
@@ -89,10 +99,11 @@ public class Radix {
         } catch (Exception e) {
         }
     }
-    public static void FA1(int[] asf1){
+    public static void FA1(int[] asf1,File directorioDestino, int k){
         try {
             int i=0;
-            FileWriter FW1=new FileWriter("ruta de archivos");
+
+            FileWriter FW1=new FileWriter(directorioDestino+"//"+"Elementos("+k+").txt");
             BufferedWriter BFW1=new BufferedWriter(FW1);
             BFW1.append("[");
             for(i=0;i<asf1.length;i++){
