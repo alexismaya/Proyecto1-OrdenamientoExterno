@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import Ordenamientos.MezclaNatural;
 import Ordenamientos.OrdenamientoExterno;
 import Ordenamientos.Polifase;
+import Ordenamientos.Radix;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -144,7 +145,7 @@ public class PrincipalController implements Initializable {
                     MezclaNatural.ordenar(fileOrigen, comparator);
                     break;
                 case "Radix":
-                    // Aqui agrega el codigo para radix
+                    Radix.ordenar(fileOrigen, comparator, directorioDestino);
                     break;
             }
         } else {
