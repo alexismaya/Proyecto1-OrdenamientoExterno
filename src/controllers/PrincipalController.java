@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import Ordenamientos.MezclaNatural;
+import Ordenamientos.OrdenamientoExterno;
 import Ordenamientos.Polifase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -63,6 +64,7 @@ public class PrincipalController implements Initializable {
         // Se inicializan los seleccionadores
         fileChooser = new FileChooser();
         directoryChooser = new DirectoryChooser();
+        pathDestinoField.setText(new File(".").getAbsolutePath());
 
         // Se configura el filechooser
         configureFileChooser(fileChooser);
@@ -107,6 +109,7 @@ public class PrincipalController implements Initializable {
         if (directorioDestino != null) {
             // Manda a llamar al método
             pathDestinoField.setText(directorioDestino.getAbsolutePath());
+            OrdenamientoExterno.setDirectorio(directorioDestino);
             verificarSeleccionados();
         }
     }
@@ -116,31 +119,41 @@ public class PrincipalController implements Initializable {
         String algoritmoElegido, criterioElegido;
         Comparator<Integer> comparator;
         Alert alert = new Alert(AlertType.INFORMATION);
+        alert.resizableProperty().set(true);
 
         // Configurando un dialogo
-        alert.setTitle("Proceso Completo");
-        alert.setHeaderText("El archivo se ha ordenado");
-        alert.setContentText(null);
+        if (OrdenamientoExterno.revisarArchivo(fileOrigen)) {
+            alert.setTitle("Proceso Completo");
+            alert.setHeaderText("El archivo se ha ordenado");
+            alert.setContentText("El archivo ordenado se encuentra en la direccion seleccionada");
 
-        algoritmoElegido = algoritmoCB.getSelectionModel().getSelectedItem();
-        criterioElegido = criterioCB.getSelectionModel().getSelectedItem();
+            algoritmoElegido = algoritmoCB.getSelectionModel().getSelectedItem();
+            criterioElegido = criterioCB.getSelectionModel().getSelectedItem();
 
-        if (criterioElegido.equals("Ascendente"))
-            comparator = new AscendingOrder();
-        else
-            comparator = new DescendingOrder();
+            if (criterioElegido.equals("Ascendente"))
+                comparator = new AscendingOrder();
+            else
+                comparator = new DescendingOrder();
 
-        // Polifase.ordenar(origen, 4);
+            // Polifase.ordenar(origen, 4);
 
-        switch (algoritmoElegido) {
-            case "Polifase":
-                Polifase.ordenar(fileOrigen, 10, comparator);
-                break;
-            case "Mezcla Natural":
-                MezclaNatural.ordenar(fileOrigen, comparator);
-                break;
-            case "Radix":
-                break;
+            switch (algoritmoElegido) {
+                case "Polifase":
+                    Polifase.ordenar(fileOrigen, 10, comparator);
+                    break;
+                case "Mezcla Natural":
+                    MezclaNatural.ordenar(fileOrigen, comparator);
+                    break;
+                case "Radix":
+                    // Aqui agrega el codigo para radix
+                    break;
+            }
+        } else {
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("El archivo que se ha asignado tiene problemas.");
+            alert.setContentText(
+                    "Asegurate de que el archico seleccionado solo tenga \",\" y numeros.\nAl menos debe tener mas de un valor.");
         }
 
         alert.showAndWait();

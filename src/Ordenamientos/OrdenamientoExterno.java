@@ -14,8 +14,16 @@ public abstract class OrdenamientoExterno {
 
     protected static Comparator<Integer> comparator;
     private static int sizeBlock;
+    protected static File directorio = new File("./src/files/");
 
     // Metodos de acceso
+
+    public static void setDirectorio(File dir) {
+        if (dir != null)
+            directorio = dir;
+        else
+            directorio = new File("./src/files/");
+    }
 
     protected static void setComparator(Comparator<Integer> order) {
         comparator = order;
@@ -25,7 +33,7 @@ public abstract class OrdenamientoExterno {
         sizeBlock = size;
     }
 
-    // Metodo Auxiliar
+    // Metodos
 
     protected static ArrayList<Integer> ordenamientoInterno(ArrayList<Integer> bloque) {
         Quicksort.setComp(comparator);
@@ -228,5 +236,64 @@ public abstract class OrdenamientoExterno {
             return true;
         else
             return false;
+    }
+
+    protected static void escrituraFinal(File origen, File destino) {
+        Scanner scFile;
+        String valor;
+        FileWriter fWriter;
+
+        try {
+            scFile = new Scanner(origen).useDelimiter(",");
+            fWriter = new FileWriter(destino);
+            do {
+                valor = scFile.next();
+                if (valor.equals("]"))
+                    break;
+                else
+                    fWriter.write(valor + ",");
+            } while (scFile.hasNext());
+            scFile.close();
+            fWriter.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se ha encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("No se ha podido escribir: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error en la lectura: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            System.out.println("El scanner se ha cerrado de forma inesperada: " + e.getMessage());
+        }
+
+    }
+
+    public static boolean revisarArchivo(File origen) {
+        Scanner scFile;
+        String valor;
+        int contador = 0;
+        int elementos = 0;
+
+        try {
+            scFile = new Scanner(origen).useDelimiter(",");
+            do {
+                valor = scFile.next();
+                if (!valor.matches("[0-9,]*")) {
+                    contador++;
+                    break;
+                } else
+                    elementos++;
+            } while (scFile.hasNext());
+            scFile.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("El archivo no se ha encontrado: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error en la lectura: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            System.out.println("El scanner se ha cerrado de forma inesperada: " + e.getMessage());
+        }
+        if (elementos == 0 || contador >= 1)
+            return false;
+        else
+            return true;
     }
 }

@@ -16,23 +16,28 @@ public class MezclaNatural extends OrdenamientoExterno {
         int iteracion = 1;
 
         try {
-            File currentDir = new File(".");
-            String direccion = currentDir.getCanonicalPath() + File.separator + "src/files/";
+            // directorio = new File(".");
+            // + File.separator + "src/files/"
+            System.out.println(directorio.getAbsolutePath());
+            String direccion = directorio.getCanonicalPath() + File.separator;
 
-            archivo1 = new File(direccion + "Archivo1-Iteracion" + iteracion + ".txt");
-            archivo2 = new File(direccion + "Archivo2-Iteracion" + iteracion + ".txt");
+            archivo1 = new File(direccion + "Archivo1-MezclaNatural-Iteracion" + iteracion + ".txt");
+            archivo2 = new File(direccion + "Archivo2-MezclaNatural-Iteracion" + iteracion + ".txt");
             iteracion++;
 
             lecturaInicial(origen, archivo1, archivo2);
 
             do {
-                archivo0 = new File(direccion + "Archivo0-Iteracion" + iteracion + ".txt");
+                archivo0 = new File(direccion + "Archivo0-MezclaNatural-Iteracion" + iteracion + ".txt");
 
                 intercalar(archivo1, archivo2, archivo0);
-                if (finalizo(archivo0))
+                if (finalizo(archivo0)) {
+                    File finalArchivo = new File(direccion + "Archivo Ordenado Mezcla Natural.txt");
+                    escrituraFinal(archivo0, finalArchivo);
                     break;
-                archivo1 = new File(direccion + "Archivo1-Iteracion" + iteracion + ".txt");
-                archivo2 = new File(direccion + "Archivo2-Iteracion" + iteracion + ".txt");
+                }
+                archivo1 = new File(direccion + "Archivo1-MezclaNatural-Iteracion" + iteracion + ".txt");
+                archivo2 = new File(direccion + "Archivo2-MezclaNatural-Iteracion" + iteracion + ".txt");
 
                 iteracion++;
                 distribuir(archivo0, archivo1, archivo2);
